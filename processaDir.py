@@ -5,12 +5,13 @@
 # data: Inicio: 21/06/2012  Fim:
 # Para executar: python processaDir.py
 
+import operator
 import sys
 import re
 
 SCRIPT_NOME = "processaDir"
 SCRIPT_AUTOR = "Neviim JADS"
-SCRIPT_VERSAO = "0.4"
+SCRIPT_VERSAO = "0.5"
 SCRIPT_LICENCA = "GPL3"
 SCRIPT_DESCRICAO = "Le e estrutura um arquivo com arvore de diretorios"
 
@@ -116,7 +117,7 @@ def main():
 						#print unicode(strTemp, 'utf-8-sig', 'ignore')
 							
 	
-	# Imprime os resultados obtidos no processamento do arquivo texto.
+    # Imprime os resultados obtidos no processamento do arquivo texto.
 	print "Quantidade de espaco que ocupamos atualmente:"
 	print
 	print "Total de linhas no arquivo:  " + str(contador_total)
@@ -138,7 +139,8 @@ def main():
 	print '-'.rjust(50,'-')
 	#
 	# Loop para totalizar e imprimir as extensoes.
-	for ext in extensaoDict:
+	
+	for ext in sorted(extensaoDict.keys(), key=str):
 		print str(ext).ljust(20,' ') +' '+ str(extensaoDict[ext]['quantidade']).rjust(8,' ') +' '+ str(extensaoDict[ext]['bytes']).rjust(20,' ')
 		extensao_soma+=extensaoDict[ext]['bytes']
 		extensao_arquivos+=extensaoDict[ext]['quantidade']

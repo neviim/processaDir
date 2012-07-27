@@ -6,7 +6,7 @@ Script para ler e processar o conteúdo de um arquivo dump gerado por um comando
 
 Forma de usar:
 
-$ python processaDir.py -a <nomeArquivo> -f <ftpserver>
+$ python processaDir.py -a nomeArquivo -f ftpserver
 
 
 Futuras implementações:

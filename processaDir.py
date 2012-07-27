@@ -16,12 +16,6 @@ SCRIPT_VERSAO = "0.5"
 SCRIPT_LICENCA = "GPL3"
 SCRIPT_DESCRICAO = "Le e estrutura um arquivo com arvore de diretorios"
 
-try:
-   fileAcesso = open("lista.txt","r") # lista.txt é o nome do arquivo que sera processado.
-except:
-   print "Falha ao abrir o arquivo texto."
-   sys.exit(1)
-
 def nvExtensao(arquivo):
 	"""verifica se o arquivo tem uma extensao e retorna ela,
 	   uso: > nvExtensao("arquivo.txt")
@@ -39,8 +33,10 @@ def nvExtensao(arquivo):
 # Chamada principal
 def main(argv):
 	
+	fileAcesso = ""
+
 	try:
-		opts, args = getopt.getopt(argv,"ha:o:",["arquivo=","ftpserver="])
+		opts, args = getopt.getopt(argv,"ha:f:",["arquivo=","ftpserver="])
 	except getopt.GetoptError:
 		print 'processaDir.py -a <nomeArquivo> -f <ftpserver>'
 		sys.exit(2)
@@ -55,7 +51,10 @@ def main(argv):
 			
 		elif opt in ("-f", "--ftpserver"):
 			fileServer = arg
-  
+
+	if fileAcesso == "":
+	   return()
+
 	"""declara as variaveis a serem totalisadas durante a operacao"""
 	espacoEmDiscoTotal = 0  # Total de espaco em disco ocupado
 	espacoEmDiscoProce = 0  # Total de espaco em disco Processado

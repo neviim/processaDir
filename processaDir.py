@@ -6,6 +6,7 @@
 # Para executar: python processaDir.py
 
 import operator
+import getopt
 import sys
 import re
 
@@ -36,7 +37,25 @@ def nvExtensao(arquivo):
 	pass
 
 # Chamada principal
-def main():
+def main(argv):
+	
+	try:
+		opts, args = getopt.getopt(argv,"ha:o:",["arquivo=","ftpserver="])
+	except getopt.GetoptError:
+		print 'processaDir.py -a <nomeArquivo> -f <ftpserver>'
+		sys.exit(2)
+
+	for opt, arg in opts:
+		if opt == '-h':
+			print 'processaDir.py -a <nomeArquivo> -f <ftpserver>'
+			sys.exit()
+			
+		elif opt in ("-a", "--arquivo"):
+			fileAcesso = open(arg,"r")
+			
+		elif opt in ("-f", "--ftpserver"):
+			fileServer = arg
+  
 	"""declara as variaveis a serem totalisadas durante a operacao"""
 	espacoEmDiscoTotal = 0  # Total de espaco em disco ocupado
 	espacoEmDiscoProce = 0  # Total de espaco em disco Processado
@@ -159,4 +178,4 @@ def main():
 	pass
 
 if __name__ == '__main__':
-	main()
+	main(sys.argv[1:])
